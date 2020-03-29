@@ -8,7 +8,7 @@ class DE:
         self.__epsilon = epsilon # privacy budget
         self.__p = math.exp(epsilon) / (math.exp(epsilon)+d-1) # probability of pertubation into itself
         self.__q = 1.0 / (math.exp(epsilon)+d-1) # probability of pertubation into xxx
-        self.__counterNew = d*[0] # count perturbed number
+        self.__counterPert = d*[0] # count perturbed number
         self.__counterReal = d*[0] # count real number
         self.__n = 0 # the number of users
     
@@ -22,7 +22,7 @@ class DE:
     def __perturbing(self, x):
         ret = self.__random_pick(x)
         ret -= 1 # corresponding to index
-        self.__counterNew[ret] += 1
+        self.__counterPert[ret] += 1
         return ret
 
     def PE(self, x):
@@ -31,15 +31,37 @@ class DE:
         return pe
 
     def aggregation(self):
-        estimate_c = self.__d*[0]
+        self.__counterEsti = self.__d*[0]
 
         # for convience
         eps = self.__epsilon
         d = self.__d
         n = self.__n
         for i in range(self.__d):
-            estimate_c[i] = (self.__counterNew[i]*(math.exp(eps)+d-1)-n)/(math.exp(eps)-1)
-        return self.__counterReal, self.__counterNew, estimate_c
+            self.__counterEsti[i] = (self.__counterPert[i]*(math.exp(eps)+d-1)-n)/(math.exp(eps)-1)
+        return self.__counterReal, self.__counterPert, self.__counterEsti
+
+    # numerical/analytical value of variance
+    def var_analytical(self):
+        e = math.exp(self.__epsilon)
+        if e==1:
+            print('var analytical error : e=', 1)
+            return -1
+        d = self.__d
+        n = self.__n
+        return n*(d-2+e)/(e-1)/(e-1)
+
+    # empirical value of variance
+    def var_empirical(self):
+        d = self.__d
+        sum = 0.0
+        for i in range(d):
+            sum += (self.__counterPert-self.__counterReal) ** 2
+        return sum / d
+
+    # set n, just for analysis
+    def set_n(self, n):
+        self.__n = n
 
     # input number v
     def __random_pick(self, v): 

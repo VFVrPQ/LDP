@@ -8,7 +8,7 @@ Two steps:
 2. Towards Real-world Estimation: RAPPOR(wait),BLH,OLH.
 
 
-## how to run
+## How to run
 
 ```bash
 $ python3 main.py

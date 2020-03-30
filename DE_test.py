@@ -54,6 +54,9 @@ def empirical_eps(protocol, epsilon, n):
         vars.append(x.var_empirical(f, n))
     return vars
 
+'''
+need run 10 times.
+'''
 # Figure 1(a)
 def numerical_values_of_var1(): 
     varslist = [] # return a list of (a list of variances)

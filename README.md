@@ -29,4 +29,4 @@ Compare to Table 2 and Fig. 1($n=10000$) to verify the code.
 
 ## Towards Real-world Estimation
 
-No idea for now.
+No idea yet.

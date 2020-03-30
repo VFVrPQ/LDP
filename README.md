@@ -36,9 +36,9 @@ Compare to Table 2 and Fig. 1($n=10000$) to verify the code.
 
 #### DE
 
-<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1a.png" width="200px" alt="DE1a"/>
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1a.png" width="300px" alt="DE1a"/>
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1b.png" width="300px" alt="DE1b"/>
 
-![DE1b](https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1b.png)
 ![DE2a](https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2a.png)
 ![DE2c](https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2c.png)
 

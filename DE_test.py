@@ -92,7 +92,7 @@ def Comparing_empirical_and_analytical_variance1():
 
     # Draw
     d = [item for item in range(2, 20, 2)] # 2^2, 2^4, ..., 2^18
-    draw.lines(d, varslist, ['Analytical DE', 'Empirical DE'], xlabel='Vary epsilon(log2(x))', ylabel='Var(log10(y))')
+    draw.lines(d, varslist, ['Analytical DE', 'Empirical DE'], title='Comparing empirical and analytical variance', xlabel='Vary epsilon(log2(x))', ylabel='Var(log10(y))')
 
 # Figure 2(c)
 def Comparing_empirical_and_analytical_variance2():
@@ -110,9 +110,10 @@ def Comparing_empirical_and_analytical_variance2():
 
     # Draw
     eps = [0.5+0.5*item for item in range(10)] # 0.5, 1, ..., 5
-    draw.lines(eps, varslist, ['Analytical DE', 'Empirical DE'], xlabel='Vary epsilon(log2(x))', ylabel='Var(log10(y))')
+    draw.lines(eps, varslist, ['Analytical DE', 'Empirical DE'], title='Comparing empirical and analytical variance', xlabel='Vary epsilon(log2(x))', ylabel='Var(log10(y))')
 
-#numerical_values_of_var1()
-#numerical_values_of_var2()
-#Comparing_empirical_and_analytical_variance1()
-Comparing_empirical_and_analytical_variance2()
+if __name__ == "__main__":
+    #numerical_values_of_var1()
+    #numerical_values_of_var2()
+    Comparing_empirical_and_analytical_variance1()
+    #Comparing_empirical_and_analytical_variance2()

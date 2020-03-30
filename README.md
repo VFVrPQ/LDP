@@ -36,11 +36,10 @@ Compare to Table 2 and Fig. 1($n=10000$) to verify the code.
 
 #### DE
 
-<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1a.png" width="300px" alt="DE1a"/>
-<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1b.png" width="300px" alt="DE1b"/>
-
-![DE2a](https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2a.png)
-![DE2c](https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2c.png)
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1a.png" width="600px" alt="DE1a"/>
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure1b.png" width="600px" alt="DE1b"/>
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2a.png" width="600px" alt="DE2a"/>
+<img src="https://github.com/VFVrPQ/LDP/blob/master/pic/DE_Figure2c.png" width="600px" alt="DE2c"/>
 
 ## Towards Real-world Estimation
 

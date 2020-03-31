@@ -3,7 +3,7 @@ import random
 
 class DE:
     """Direct Encoding, 
-       domain [0, 1, ..., d-1]
+       d:domain, including the values [0, 1, ..., d-1]
     """
     def __init__(self, d, epsilon):
         self.__d = d # input size

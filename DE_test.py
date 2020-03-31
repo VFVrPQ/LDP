@@ -95,7 +95,7 @@ def Comparing_empirical_and_analytical_variance1():
 
     # Draw
     d = [item for item in range(2, 20, 2)] # 2^2, 2^4, ..., 2^18
-    draw.lines(d, varslist, ['Analytical DE', 'Empirical DE'], title='Comparing empirical and analytical variance', xlabel='Vary epsilon(log2(x))', ylabel='Var(log10(y))')
+    draw.lines(d, varslist, ['Analytical DE', 'Empirical DE'], title='Comparing empirical and analytical variance', xlabel='Vary d(log2(x))', ylabel='Var(log10(y))')
 
 # Figure 2(c)
 def Comparing_empirical_and_analytical_variance2():

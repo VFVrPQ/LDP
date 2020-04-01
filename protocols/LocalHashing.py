@@ -16,13 +16,11 @@ class LocalHashing:
         self.__g = g
         self.__p = math.exp(epsilon) / (math.exp(epsilon)+g-1) # probability of pertubation into itself
         self.__q = 1.0 / (math.exp(epsilon)+g-1) # probability of pertubation into xxx
-        self.__pStar = self.__p # p*
-        self.__qStar = 1.0 / g # q*
-
-        self.__uh = UniversalHashing(g, d) # universal Hashing
         self.__counterPert = d*[0] # count perturbed number
         self.__counterReal = d*[0] # count real number [0,0,...,0]
         self.__n = 0 # the number of users
+        
+        self.__uh = UniversalHashing(g, d) # universal Hashing
         
     # Encode(v) = <H, x>
     def __encoding(self, v):
@@ -43,26 +41,25 @@ class LocalHashing:
         H, y = self.__perturbing((H, x))
         return H, y
 
+    # aggregation: pure Protocol
     def aggregation(self):
         self.__counterEsti = self.__d*[0]
-
-        # for convience
-        eps = self.__epsilon
         n = self.__n 
-        pStar = self.__pStar
-        qStar = self.__qStar
-
+        pStar = self.__p # p*
+        qStar = 1.0 / self.__g # q*
         for i in range(self.__d):
             self.__counterEsti[i] = (self.__counterPert[i]-n*qStar)/(pStar-qStar)
 
-    # numerical/analytical value of variance
+    # pure protocol, numerical/analytical value of variance, 
+    # another way to calc is n*( (e-1+g) ** 2)/( (e-1) ** 2)/(g-1)
     def var_analytical(self):
         e = math.exp(self.__epsilon)
         assert e>1, 'var analytical error : e<=1'
-        d = self.__d
-        g = self.__g
         n = self.__n
-        return n*( (e-1+g) ** 2)/( (e-1) ** 2)/(g-1)
+        pStar = self.__p
+        qStar = 1.0 / self.__g
+        return n*qStar*(1-qStar)/(pStar-qStar)/(pStar-qStar)
+
 
     # empirical value of variance
     # f: list of probability,

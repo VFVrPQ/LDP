@@ -1,11 +1,11 @@
 
 '''
 zipf:
-param: s, range: n
-output : A list with num numbers, ranging from 0 to n-1
+param: s, s in [0, 1, .., n-1]
+output : A list with $num$ numbers, ranging from 0 to n-1
 '''
 
-def probList(s, n):
+def probList(s, n, num):
     assert n > 0, 'n <= 0'
     if n == 1:
         return num*[0]
@@ -22,7 +22,7 @@ def probList(s, n):
     return f
 
 def zipf(s, n, num):
-    f = probList(s, n)
+    f = probList(s, n, num)
     # generate data
     # 0 is the last value to add 
     out = []

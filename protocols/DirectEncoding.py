@@ -1,9 +1,10 @@
 import math
 import random
 
-class DE:
+class DirectEncoding:
     """Direct Encoding, 
        d:domain, including the values [0, 1, ..., d-1]
+       epsilon: privacy budget, >= 0 
     """
     def __init__(self, d, epsilon):
         self.__d = d # input size
@@ -14,43 +15,41 @@ class DE:
         self.__counterReal = d*[0] # count real number [0,0,...,0]
         self.__n = 0 # the number of users
     
-    # Encode(x) = x
-    def __encoding(self, x):
-        ret = x
+    # Encode(v) = x
+    def __encoding(self, v):
         self.__n += 1
-        self.__counterReal[ret] += 1 # counter
-        return ret
+        self.__counterReal[v] += 1 # counter
+        x = v
+        return x
 
     def __perturbing(self, x):
-        ret = self.__random_pick(x)
-        self.__counterPert[ret] += 1
-        return ret
+        y = self.__random_pick(x)
+        self.__supports(y)
+        return y
 
     def PE(self, x):
         e = self.__encoding(x)
         pe = self.__perturbing(e)
         return pe
 
+    # aggregation: pure Protocol
     def aggregation(self):
         self.__counterEsti = self.__d*[0]
-
-        # for convience
-        eps = self.__epsilon
-        d = self.__d
         n = self.__n
+        pStar = self.__p
+        qStar = self.__q
         for i in range(self.__d):
-            self.__counterEsti[i] = (self.__counterPert[i]*(math.exp(eps)+d-1)-n)/(math.exp(eps)-1)
-        #return self.__counterReal, self.__counterPert, self.__counterEsti
-
-    # numerical/analytical value of variance
+            self.__counterEsti[i] = (self.__counterPert[i]-n*qStar)/(pStar-qStar)
+        
+    # pure protocol, numerical/analytical value of variance, 
+    # another way to calc is n*(d-2+e)/(e-1)/(e-1)
     def var_analytical(self):
         e = math.exp(self.__epsilon)
-        if e==1:
-            print('var analytical error : e=', 1)
-            return -1
-        d = self.__d
+        assert e>1, 'var analytical error : e<=1'
         n = self.__n
-        return n*(d-2+e)/(e-1)/(e-1)
+        pStar = self.__p
+        qStar = self.__q
+        return n*qStar*(1-qStar)/(pStar-qStar)/(pStar-qStar)
 
     # empirical value of variance
     # f: list of probability; n : the number 
@@ -67,6 +66,14 @@ class DE:
 
     def get_n(self):
         return self.__n
+
+    def get_class_name(self):
+        return str(self.__class__.__name__)
+
+    # a set of input values that y "supports"
+    # counter
+    def __supports(self, y):
+        self.__counterPert[y] += 1
 
     # input number v
     def __random_pick(self, v):

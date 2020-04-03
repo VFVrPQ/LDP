@@ -47,8 +47,15 @@ Compare to Table 2 and Fig. 1($n=10000$) to verify the code.
 
 ## Towards Real-world Estimation
 
+### 6.2.1 Figure 3
+下载完数据`./data/kosarak.dat`后，
+1. 模拟用户点击，根据不同的LDP协议发送给服务器；
+2. 服务器收集了$n=8,000,000$,$d=41270$的数据后，使用aggregation，即estimate distribution（每个网页都要估计）；
+3. 取前30个最高频度的计算平均方差。
+
+写了`drawFigure3.py`，但是运行速度太慢了。
 No idea yet.
 
 ### datasets
 
-```./data/kosarak.dat.gz``` is from: http://fimi.uantwerpen.be/data/
+`./data/kosarak.dat.gz` is from: http://fimi.uantwerpen.be/data/

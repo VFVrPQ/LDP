@@ -48,3 +48,7 @@ Compare to Table 2 and Fig. 1($n=10000$) to verify the code.
 ## Towards Real-world Estimation
 
 No idea yet.
+
+### datasets
+
+```./data/kosarak.dat.gz``` is from: http://fimi.uantwerpen.be/data/

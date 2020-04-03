@@ -57,10 +57,10 @@ def analytical_OLH(protocol, d, n):
 # fixing d=2^10
 def empirical_OLH(protocol, d, n):
     vars = []
-    g = 53 # round(math.exp(epsilon)+1)效果不好，要取最近的素数（因为universal hashing！！)
+    primeList = [3, 3, 5, 7, 13, 23, 37, 53, 89, 149] # according to epsilon=[0.5, 1.0, ..., 5.0]
     for step in range(NUMBEROFAXIS): # 10 values
         epsilon = 0.5 + 0.5 * step
-        x = protocol(d, epsilon, g) # init
+        x = protocol(d, epsilon, g=primeList[step]) # round(math.exp(epsilon)+1)效果不好，要取最近的素数（因为universal hashing！！)
         users = zipf.zipf(1.1, d, n)
         for i in range(len(users)):
             if i % 1000 == 0:

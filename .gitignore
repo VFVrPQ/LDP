@@ -4,3 +4,6 @@ python_class_learn
 *.pyc
 .DS_Store
 test
+read.cpp
+temp_*
+a.out

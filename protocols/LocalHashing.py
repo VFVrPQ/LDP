@@ -1,6 +1,7 @@
 from Components.UniversalHashing import UniversalHashing
 import math
 import random
+import heapq
 
 class LocalHashing:
     '''
@@ -70,6 +71,23 @@ class LocalHashing:
         for i in range(d):
             sum += (self.__counterEsti[i] - 1.0*f[i]*n) ** 2
         return sum / d
+
+    # empirical value of variance, issue queries fro the $k$ most frequent values in the original dataset,
+    # We then calculate the average squared error of the $k$ estimations produced by different methods.
+    # k: k<=n
+    def var_empirical_top_k(self, k):
+        assert k <= self.__n, 'k > self.__n'
+        temp = []
+        for i in range(self.__d):
+            temp.append((self.__counterReal[i], i)) # turple
+        heapq.heapify(temp)
+        temp_k = heapq.nsmallest(k, temp) # get the $k$ most frequent values 
+        
+        sum = 0.0
+        for i in range(k):
+            index = temp_k[i][1] # get index
+            sum += (self.__counterEsti[i] - 1.0*self.__counterReal[i]) ** 2    
+        return sum / k
 
     # set n, just for analysis
     def set_n(self, n):

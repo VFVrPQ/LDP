@@ -31,7 +31,8 @@ def empirical_eps(protocol, epislon, n):
         x = protocol(d, epislon, n)
         f = []
         for i in range(n): # random PE
-            print(i,step)
+            if i%1000 == 0:
+                print(i,step)
             #f.append(1.0/d)
             m = random.randint(1,d)
             #print(m)
@@ -70,8 +71,8 @@ def Comparing_empirical_and_analytical_variance1():
     varslist.append(vars)
     
     # Draw
-    d = [item for item in range(2, 20, 2)] # 2^2, 2^4, ..., 2^18
+    d = [item for item in range(2, 16, 2)] # 2^2, 2^4, ..., 2^18
     draw.lines(d, varslist, ['Analytical SUE', 'Empirical SUE'], xlabel='Vary d(log2(d))', ylabel='Vary n(log10(n))')
 
-numerical_values_of_var2()
-#Comparing_empirical_and_analytical_variance1()
+#numerical_values_of_var2()
+Comparing_empirical_and_analytical_variance1()

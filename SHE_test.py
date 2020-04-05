@@ -1,4 +1,4 @@
-from OUE.OUE import OUE
+from SHE.SHE import SHE
 from Components.Draw import draw
 from Components.Distribution import zipf
 import math
@@ -50,31 +50,31 @@ def empirical_eps(protocol, epsilon, n):
 def numerical_values_of_var2(): 
     varslist = [] # return a list of (a list of variances)
     d=2**10 # 2^10
-    vars = analytical(OUE, d, 10000)
+    vars = analytical(SHE, d, 10000)
     for i in range(len(vars)):
         vars[i] = math.log(vars[i]) / math.log(10)
     varslist.append(vars)
     epss = [0.5+0.5*item for item in range(10)] # 0.5, 1.0, ..., 5.0
-    draw.lines(epss, varslist, ['OUE'], ylabel='Var(log10(y))')
+    draw.lines(epss, varslist, ['SHE'], ylabel='Var(log10(y))')
 
 # Figure 2(a)
 def Comparing_empirical_and_analytical_variance1():
     varslist = [] # return a list of (a list of variances)
     # Analytical DE
-    vars = analytical_eps(OUE, 4, 10000)
+    vars = analytical_eps(SHE, 4, 10000)
     for i in range(len(vars)): #log10
         vars[i] = math.log(vars[i]) / math.log(10)
     varslist.append(vars)
     # Empirical DE
     
-    vars = empirical_eps(OUE, 4, 10000)
+    vars = empirical_eps(SHE, 4, 10000)
     for i in range(len(vars)): #log10
         vars[i] = math.log(vars[i]) / math.log(10)
     varslist.append(vars)
     
     # Draw
     d = [item for item in range(2, 16, 2)] # 2^2, 2^4, ..., 2^18
-    draw.lines(d, varslist, ['Analytical OUE', 'Empirical OUE'], xlabel='Vary d(log2(d))', ylabel='Vary n(log10(n))')
+    draw.lines(d, varslist, ['Analytical SHE', 'Empirical SHE'], xlabel='Vary d(log2(d))', ylabel='Vary n(log10(n))')
 
 #numerical_values_of_var2()
 Comparing_empirical_and_analytical_variance1()

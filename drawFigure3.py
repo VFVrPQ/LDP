@@ -59,10 +59,21 @@ def empirical_OLH(protocol, d, numbers):
     return vars
 #### end/OLH ####
 
-# Figure 3
+### give up
+def getBLHCounter():
+    numbers = readIntList('./data/kosarak.dat')
+    maxnum = max(numbers)
+    totnum = len(numbers)
+    print('maxnum, totnum: ', maxnum, totnum)
+
+    varslist = []
+    # Empirical BLH
+    vars = empirical_BLH(LocalHashing, d=maxnum+1, numbers=numbers)
+
+# Figure 3(not verify  when n is large)
 def drawFigure3():
     numbers = readIntList('./data/kosarak.dat')
-    numbers = numbers[0:1000] ###### too much values, so cut off 
+    numbers = numbers[0:10000] ###### too much values, so cut off 
     maxnum = max(numbers)
     totnum = len(numbers)
     print('maxnum, totnum: ', maxnum, totnum)
